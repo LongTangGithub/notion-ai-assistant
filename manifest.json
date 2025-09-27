@@ -1,0 +1,35 @@
+{
+    "manifest_version": 3,
+    "name": "Notion AI Assistant",
+    "version": "0.0.1",
+    "description": "Enhance Notion with AI-powered features",
+
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+
+    "host_permissions": [
+        "https://www.notion.so/*",
+        "https://notion.so/*"
+    ],
+
+    "background": {
+        "service_worker": "background/background.js"
+    },
+
+    "content_scripts": [
+        {
+          "matches": ["https://www.notion.so/*", "https://notion.so/*"],
+          "js": ["content/content.js"],
+          "run_at": "document_idle"
+        }
+      ],
+      
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+          "128": "icons/icon128.png"
+        }
+    }
+}
