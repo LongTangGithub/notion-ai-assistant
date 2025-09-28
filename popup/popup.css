@@ -38,6 +38,11 @@ h2 {
   color: #92400e;
 }
 
+#status.loading {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
 #page-info {
   font-size: 14px;
   color: #37352f;
