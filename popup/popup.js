@@ -22,8 +22,17 @@ async function checkNotionPage() {
       statusDiv.className = "success";
       pageInfoDiv.innerHTML = `<strong>Page Title:</strong> ${response.title}`;
     } else {
-      statusDiv.textContent = "⏳ Waiting for Notion to load...";
-      statusDiv.className = "warning";
+      // Check if we're in loading state
+      chrome.storage.local.get(['isLoading', 'currentPageTitle'], (result) => {
+        if (result.isLoading) {
+          statusDiv.textContent = "🔄 Detecting Notion page...";
+          statusDiv.className = "loading";
+          pageInfoDiv.innerHTML = `<em>Please wait...</em>`;
+        } else {
+          statusDiv.textContent = "⏳ Waiting for Notion to load...";
+          statusDiv.className = "warning";
+        }
+      });
     }
   } catch (error) {
     console.error("Error:", error);
